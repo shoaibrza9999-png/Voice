@@ -9,6 +9,7 @@ class Settings(BaseSettings):
     WHATSAPP_VERIFY_TOKEN: str = os.getenv("WHATSAPP_VERIFY_TOKEN", "my_secret_token")
     WHATSAPP_API_TOKEN: str = os.getenv("WHATSAPP_API_TOKEN", "mock_token")
     WHATSAPP_PHONE_NUMBER_ID: str = os.getenv("WHATSAPP_PHONE_NUMBER_ID", "mock_id")
+    WHATSAPP_PROXY_URL: str = os.getenv("WHATSAPP_PROXY_URL", "") # e.g. "https://my-proxy.onrender.com"
 
     # LLM & Transcription
     GROQ_API_KEY: str = os.getenv("GROQ_API_KEY", "mock_groq_key")

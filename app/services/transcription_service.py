@@ -11,13 +11,14 @@ class TranscriptionService:
     def __init__(self):
         self.groq_client = AsyncGroq(api_key=settings.GROQ_API_KEY)
         self.whatsapp_token = settings.WHATSAPP_API_TOKEN
+        self.host = settings.WHATSAPP_PROXY_URL.rstrip('/') if settings.WHATSAPP_PROXY_URL else "https://graph.facebook.com"
 
     async def download_media(self, media_id: str) -> str:
         """
         Downloads a media file from WhatsApp given its media_id.
         Returns the local file path.
         """
-        url = f"https://graph.facebook.com/v19.0/{media_id}"
+        url = f"{self.host}/v19.0/{media_id}"
         headers = {"Authorization": f"Bearer {self.whatsapp_token}"}
 
         try:

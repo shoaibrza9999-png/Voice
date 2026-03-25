@@ -8,7 +8,11 @@ class WhatsAppService:
     def __init__(self):
         self.api_token = settings.WHATSAPP_API_TOKEN
         self.phone_number_id = settings.WHATSAPP_PHONE_NUMBER_ID
-        self.base_url = f"https://graph.facebook.com/v19.0/{self.phone_number_id}/messages"
+
+        # Use proxy if configured to bypass outbound restrictions
+        host = settings.WHATSAPP_PROXY_URL.rstrip('/') if settings.WHATSAPP_PROXY_URL else "https://graph.facebook.com"
+        self.base_url = f"{host}/v19.0/{self.phone_number_id}/messages"
+
         self.headers = {
             "Authorization": f"Bearer {self.api_token}",
             "Content-Type": "application/json"
