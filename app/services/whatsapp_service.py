@@ -29,8 +29,9 @@ class WhatsAppService:
                 return response.json()
         except httpx.HTTPError as e:
             logger.error(f"Error sending WhatsApp message: {e}")
-            if e.response:
-                logger.error(f"Response: {e.response.text}")
+            response = getattr(e, 'response', None)
+            if response:
+                logger.error(f"Response: {response.text}")
             return None
 
     async def send_interactive_buttons(self, to_phone_number: str, text_body: str, buttons: list):
@@ -69,8 +70,9 @@ class WhatsAppService:
                 return response.json()
         except httpx.HTTPError as e:
             logger.error(f"Error sending WhatsApp interactive message: {e}")
-            if e.response:
-                logger.error(f"Response: {e.response.text}")
+            response = getattr(e, 'response', None)
+            if response:
+                logger.error(f"Response: {response.text}")
             return None
 
 whatsapp_service = WhatsAppService()
