@@ -18,3 +18,6 @@ class Settings(BaseSettings):
         env_file = ".env"
 
 settings = Settings()
+
+if settings.DATABASE_URL and settings.DATABASE_URL.startswith("postgres://"):
+    settings.DATABASE_URL = settings.DATABASE_URL.replace("postgres://", "postgresql://", 1)
