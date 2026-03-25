@@ -1,3 +1,11 @@
+---
+title: WhatsApp Finance Tracker
+emoji: 💸
+colorFrom: green
+colorTo: blue
+sdk: docker
+app_port: 7860
+---
 # WhatsApp Voice & Text Finance Tracker
 
 A lightweight SaaS microservice serving as a backend for a WhatsApp AI financial agent. It processes incoming text and voice notes, transcribes them, classifies intents (Add, Edit, Remove, Find, Filter) using Groq API, and stores data in a PostgreSQL or SQLite database.
